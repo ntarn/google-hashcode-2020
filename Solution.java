@@ -65,7 +65,7 @@ class Solution {
   public static void readData() {
     Scanner scanner;
     try {
-      scanner = new Scanner(new File("./data/example.in"));
+      scanner = new Scanner(new File("./data/vloggers_of_the_world.in"));
 
       String[] firstLine = scanner.nextLine().split(" ");
       numVideos = Integer.parseInt(firstLine[0]);
@@ -137,7 +137,7 @@ class Solution {
         break;
       }
       videoRequests[maxRequestsVideoId] = -1;
-      System.out.println("videoid" + maxRequestsVideoId);
+      //System.out.println("videoid" + maxRequestsVideoId);
       cacheVideo(maxValue, maxRequestsVideoId);
 
     }
@@ -156,7 +156,7 @@ class Solution {
         // for each endpoint (dataCenterLatency - minCacheAvailableLatency) * numRequests 
         if (videoSizes[maxRequestsVideoId] <= cacheSizes[cacheIndex] &&       
             videoEndpoints.containsKey(maxRequestsVideoId)) { 
-          System.out.println("videosize: " + videoSizes[maxRequestsVideoId] + " for: " + maxRequestsVideoId);
+          //System.out.println("videosize: " + videoSizes[maxRequestsVideoId] + " for: " + maxRequestsVideoId);
           if (videoEndpoints.get(maxRequestsVideoId).containsKey(endpointId)){
             cacheScores[cacheIndex] = cacheScores[cacheIndex] + 
                 (endpointCenterLatencies.get(endpointId) - endpointCacheLatencies.get(endpointId).get(cacheIndex)) * 
@@ -176,7 +176,7 @@ class Solution {
         maxCacheIndex= i;
       }
     }
-    System.out.println("index: " + maxCacheIndex + " size of cache:" +  cacheSizes[maxCacheIndex]);
+    //System.out.println("index: " + maxCacheIndex + " size of cache:" +  cacheSizes[maxCacheIndex]);
     if (videoSizes[maxRequestsVideoId] > cacheSizes[maxCacheIndex]) {
       return; 
     }
@@ -190,14 +190,14 @@ class Solution {
       videos.add(maxRequestsVideoId);
       cacheToVideos.put(maxCacheIndex, videos);
     }
-    System.out.println("before:" + cacheSizes[maxCacheIndex]);
+    //System.out.println("before:" + cacheSizes[maxCacheIndex]);
     // 4. Mark the cache for the space taken
     cacheSizes[maxCacheIndex] = cacheSizes[maxCacheIndex] - videoSizes[maxRequestsVideoId];
-    System.out.println("after:" + cacheSizes[maxCacheIndex]);
+    //System.out.println("after:" + cacheSizes[maxCacheIndex]);
   }
 
   public static void writeOutputs() {
-    System.out.println(cacheToVideos);
+    //System.out.println(cacheToVideos);
     System.out.println(cacheToVideos.size());
     for (Integer cacheId : cacheToVideos.keySet()) {
       System.out.print(cacheId);
